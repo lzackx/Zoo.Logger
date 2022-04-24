@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'Zoo.Logger_Example' do
+  pod 'Zoo.Logger', :path => '../'
+
+  target 'Zoo.Logger_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
