@@ -7,12 +7,40 @@
 //
 
 #import "ZOOAppDelegate.h"
+#import <Zoo/ZooManager.h>
+#import <ZooGeneral/ZooManager+General.h>
+#import <ZooGeneral/ZooCacheManager+General.h>
+#import <ZooLogger/ZooManager+Logger.h>
+#import <ZooLogger/ZooCacheManager+Logger.h>
+
+#import <CocoaLumberjack/CocoaLumberjack.h>
+
+#define ddLogLevel DDLogLevelVerbose
 
 @implementation ZOOAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    [[ZooManager shareInstance] addGeneralPlugins];
+    [[ZooManager shareInstance] addLoggerPlugins];
+    [[ZooManager shareInstance] setupGeneralPlugins];
+    [[ZooManager shareInstance] setupLoggerPlugins];
+    [[ZooManager shareInstance] install];
+    
+    [DDLog addLogger:[DDOSLogger sharedInstance]]; // Uses os_log
+
+    DDFileLogger *fileLogger = [[DDFileLogger alloc] init]; // File Logger
+    fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
+    fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
+    [DDLog addLogger:fileLogger];
+
+    DDLogVerbose(@"Verbose");
+    DDLogDebug(@"Debug");
+    DDLogInfo(@"Info");
+    DDLogWarn(@"Warn");
+    DDLogError(@"Error");
     return YES;
 }
 
