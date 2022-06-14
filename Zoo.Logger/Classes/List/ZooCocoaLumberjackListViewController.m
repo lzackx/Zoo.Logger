@@ -6,12 +6,12 @@
 
 #import "ZooCocoaLumberjackListViewController.h"
 #import <Zoo/ZooStringSearchView.h>
-#import "ZooDefine.h"
+#import <Zoo/ZooDefine.h>
 #import "ZooCocoaLumberjackLevelView.h"
 #import "ZooCocoaLumberjackListCell.h"
 #import "ZooDDLogMessage.h"
 #import "ZooCocoaLumberjackLogger.h"
-#import "ZooNavBarItemModel.h"
+#import <Zoo/ZooNavBarItemModel.h>
 
 @interface ZooCocoaLumberjackListViewController ()<ZooStringSearchViewDelegate,ZooCocoaLumberjackLevelViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
